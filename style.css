@@ -1,0 +1,113 @@
+body {
+    background-color: #141414;
+    color: white;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+a { text-decoration: none; color: white; }
+
+/* Header */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 4%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0));
+}
+.logo { color: #E50914; font-size: 30px; font-weight: bold; }
+.logout-btn { background-color: #E50914; padding: 7px 15px; border-radius: 5px; font-size: 14px; }
+
+/* Login */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-bcae-07a3f8dc141a/f6d7434e-d6de-4185-a6d4-c77a2d08737b/US-en-20220502-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+    background-size: cover;
+}
+.login-box {
+    background-color: rgba(0,0,0,0.75);
+    padding: 60px;
+    border-radius: 10px;
+    width: 300px;
+}
+.login-box input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #333;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    box-sizing: border-box; 
+}
+.login-box button {
+    width: 100%;
+    padding: 15px;
+    background: #E50914;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Dashboard */
+.hero { padding: 20px 4%; }
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 4%;
+}
+.card {
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+.card:hover { transform: scale(1.1); }
+.card img { width: 100%; border-radius: 4px; }
+.card-title { margin-top: 10px; font-size: 14px; color: #b3b3b3; }
+
+/* Movie Details */
+.video-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+.video-responsive iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+.back-btn { font-size: 20px; margin-bottom: 20px; display: inline-block; }
+.movie-background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Send to back */
+    background-position: center center;
+    background-size: cover;
+    /* Blur and heavily darken the background image */
+    filter: blur(30px) brightness(0.3);
+    /* Scale up slightly to hide blurred edges */
+    transform: scale(1.1);
+}
+
+/* This wrapper holds the actual page content on top of the blurred background */
+.content-wrapper {
+    position: relative;
+    z-index: 1; /* Bring to front */
+    min-height: 100vh; /* Ensure it covers full height */
+    /* Add a subtle gradient overlay for better text readability */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(20,20,20,1) 100%);
+}
+
+/* Adjust navbar for this page to blend in */
+.movie-page-navbar {
+    background: transparent;
+    padding-top: 30px;
+}

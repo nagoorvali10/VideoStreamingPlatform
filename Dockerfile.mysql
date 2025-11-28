@@ -1,0 +1,10 @@
+# Use the official MySQL database image
+FROM mysql:5.7
+
+# Copy your SQL backup file into the auto-start folder of the database
+# When this container starts, it will automatically run 'backend.sql'
+COPY backend.sql /docker-entrypoint-initdb.d/
+
+# Set the default database name and root password
+ENV MYSQL_DATABASE=strimx_db
+ENV MYSQL_ROOT_PASSWORD=1234
