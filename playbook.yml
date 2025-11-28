@@ -1,0 +1,21 @@
+---
+- name: Deploy STRIMX on Kubernetes
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Create STRIMX Namespace
+      command: kubectl create namespace strimx-ns
+      ignore_errors: yes
+
+    - name: Apply Database Config
+      command: kubectl apply -f k8s/mysql-deployment.yaml
+
+    - name: Apply Web App Config
+      command: kubectl apply -f k8s/web-deployment.yaml
+
+    - name: Wait for Pods
+      command: kubectl get pods -n strimx-ns
+      register: pod_output
+
+    - debug:
+        msg: "{{ pod_output.stdout_lines }}"

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  namespace: strimx-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: strimx-db
+  template:
+    metadata:
+      labels:
+        app: strimx-db
+    spec:
+      containers:
+      - name: mysql
+        image: nagoorvali10/strimx-db:latest  # <--- CHANGED to your likely username
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "1234"
+        - name: MYSQL_DATABASE
+          value: "strimx_db"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  namespace: strimx-ns
+spec:
+  selector:
+    app: strimx-db
+  ports:
+    - port: 3306
+      targetPort: 3306
+  type: ClusterIP
